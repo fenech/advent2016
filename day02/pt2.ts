@@ -1,4 +1,5 @@
 import { input } from "./input";
+import { State, initialState } from "./state";
 
 const numberPad = [
     [null, null, 1, null, null],
@@ -7,11 +8,6 @@ const numberPad = [
     [null, "A", "B", "C", null],
     [null, null, "D", null, null]
 ];
-
-interface State {
-    x: number;
-    y: number;
-}
 
 const number = (state: State) => numberPad[state.y][state.x];
 
@@ -40,12 +36,8 @@ const move = ({ x, y }: State, direction: Direction) => {
     return move(state);
 };
 
-const initialState: State = {
-    x: 1,
-    y: 1
-};
-
 var state = initialState;
+
 input.split(/\n/).forEach(line => {
     for (let i = 0; i < line.length; ++i) {
         const direction = line.charAt(i) as Direction;

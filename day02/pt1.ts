@@ -1,19 +1,17 @@
 import { input } from "./input";
+import { State, initialState } from "./state";
 
 const numberPad = [
-    [1, 2, 3],
+    [1, 2, 6],
     [4, 5, 6],
     [7, 8, 9]
 ];
 
-interface State {
-    x: number;
-    y: number;
-}
-
 const number = (state: State) => numberPad[state.y][state.x];
 
-interface Movement { (x: number): number };
+interface Movement { 
+    (x: number): number;
+}
 
 const moves: { [direction: string]: { y: Movement, x: Movement } } = {
     U: {
@@ -32,7 +30,7 @@ const moves: { [direction: string]: { y: Movement, x: Movement } } = {
         y: (y: number) => y,
         x: (x: number) => Math.min(2, x + 1)
     }
-}
+};
 
 type Direction = "U" | "D" | "L" | "R";
 const move = ({ x, y }: State, direction: Direction) => {
@@ -43,13 +41,8 @@ const move = ({ x, y }: State, direction: Direction) => {
     };
 };
 
-
-const initialState: State = {
-    x: 1,
-    y: 1
-};
-
 var state = initialState;
+
 input.split(/\n/).forEach(line => {
     for (let i = 0; i < line.length; ++i) {
         const direction = line.charAt(i) as Direction;
