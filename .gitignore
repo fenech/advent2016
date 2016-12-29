@@ -1,3 +1,4 @@
 **/.vscode
+node_modules
 day0[2-9]/*.js*
 day[1-2][0-9]/*.js*
